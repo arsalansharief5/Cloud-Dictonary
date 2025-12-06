@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cloud Dictionary App</title>
+
+    <!-- Google Font: Poppins -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    />
+
+    <style>
+      :root {
+        --bg-color: #0f172a;
+        --card-color: #020617;
+        --accent-color: #22c55e;
+        --text-color: #e5e7eb;
+        --muted-color: #9ca3af;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #1e293b, #020617 55%);
+        color: var(--text-color);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .app-container {
+        width: 100%;
+        max-width: 520px;
+        background: linear-gradient(145deg, #020617, #020617f2);
+        border-radius: 18px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 22px 45px rgba(15, 23, 42, 0.9);
+        padding: 24px 22px 20px;
+      }
+
+      .app-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .app-subtitle {
+        font-size: 0.8rem;
+        color: var(--muted-color);
+        margin-bottom: 16px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.7rem;
+        padding: 4px 9px;
+        border-radius: 999px;
+        background: rgba(15, 118, 110, 0.15);
+        border: 1px solid rgba(45, 212, 191, 0.4);
+        color: #a5f3fc;
+        margin-bottom: 12px;
+      }
+
+      .pill-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+      }
+
+      .search-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .search-input {
+        flex: 1;
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: rgba(15, 23, 42, 0.85);
+        color: var(--text-color);
+        font-size: 0.85rem;
+        outline: none;
+        transition: border-color 0.18s ease, box-shadow 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .search-input::placeholder {
+        color: rgba(148, 163, 184, 0.8);
+      }
+
+      .search-input:focus {
+        border-color: rgba(52, 211, 153, 0.9);
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.7);
+        background: rgba(15, 23, 42, 1);
+      }
+
+      .search-button {
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #022c22;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 12px 25px rgba(22, 163, 74, 0.55);
+        transition: transform 0.12s ease, box-shadow 0.12s ease,
+          filter 0.12s ease;
+      }
+
+      .search-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 30px rgba(22, 163, 74, 0.7);
+        filter: brightness(1.04);
+      }
+
+      .search-button:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 18px rgba(22, 163, 74, 0.6);
+        filter: brightness(0.98);
+      }
+
+      .search-button-icon {
+        font-size: 0.85rem;
+      }
+
+      .definition-card {
+        margin-top: 10px;
+        padding: 10px 11px;
+        border-radius: 14px;
+        background: radial-gradient(circle at top left, #0f172a, #020617);
+        border: 1px solid rgba(55, 65, 81, 0.8);
+      }
+
+      .definition-word {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+
+      .definition-meta {
+        font-size: 0.7rem;
+        color: var(--muted-color);
+        margin-bottom: 6px;
+      }
+
+      .definition-text {
+        font-size: 0.8rem;
+        line-height: 1.35;
+      }
+
+      .footer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.7rem;
+        color: var(--muted-color);
+      }
+
+      .tag {
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        font-size: 0.65rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app-container">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Cloud Dictionary · Serverless
+      </div>
+
+      <h1 class="app-title">Cloud Dictionary App</h1>
+      <p class="app-subtitle">
+        Look up and store word meanings, backed by AWS Amplify, Lambda, API
+        Gateway, and DynamoDB.
+      </p>
+
+      <div class="search-row">
+        <input
+          id="wordInput"
+          class="search-input"
+          type="text"
+          placeholder="Type a word, e.g., serverless"
+        />
+        <button class="search-button" onclick="searchWord()">
+          <span class="search-button-icon">🔍</span>
+          Search
+        </button>
+      </div>
+
+      <div id="definitionCard" class="definition-card" style="display:none;">
+        <div class="definition-word" id="defWord"></div>
+        <div class="definition-meta" id="defMeta"></div>
+        <div class="definition-text" id="defText"></div>
+      </div>
+
+      <div class="footer">
+        <span>Powered by AWS serverless</span>
+        <span class="tag">v1 · read‑only</span>
+      </div>
+    </div>
+
+    <script>
+      async function searchWord() {
+        const wordEl = document.getElementById("wordInput");
+        const word = wordEl.value.trim();
+
+        if (!word) return;
+
+        // TODO: Replace with your real API Gateway URL
+        const apiUrl = "https://your-api-id.execute-api.region.amazonaws.com/prod/dictionary?word=" + encodeURIComponent(word);
+
+        const defCard = document.getElementById("definitionCard");
+        const defWord = document.getElementById("defWord");
+        const defMeta = document.getElementById("defMeta");
+        const defText = document.getElementById("defText");
+
+        defCard.style.display = "block";
+        defWord.textContent = word;
+        defMeta.textContent = "Searching in cloud dictionary…";
+        defText.textContent = "";
+
+        try {
+          const res = await fetch(apiUrl);
+          if (!res.ok) {
+            throw new Error("Request failed with status " + res.status);
+          }
+          const data = await res.json();
+
+          defMeta.textContent = "Definition from DynamoDB";
+          defText.textContent =
+            data.definition || "No definition found for this word.";
+        } catch (err) {
+          defMeta.textContent = "Error";
+          defText.textContent =
+            "Could not fetch meaning right now. Check the API URL or Lambda logs.";
+        }
+      }
+    </script>
+  </body>
+</html>
